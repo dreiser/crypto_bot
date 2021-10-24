@@ -3,12 +3,12 @@ import os
 from binance import AsyncClient
 import random
 
-
+#  виртуальное окружение.  нужна, чтобы не  раскрывать пароли
 load_dotenv()
 BINANCE_API = os.getenv("BINANCE_API_KEY")
 BINANCE_SEKRET = os.getenv("BINANCE_SECRET_KEY")
 
-
+#  вызываем пару валют - стоимость одной относит другой
 async def fetch_pair_price(crypto_pair):
     # initialise the client
     client = await AsyncClient.create(BINANCE_API, BINANCE_SEKRET)
@@ -19,7 +19,7 @@ async def fetch_pair_price(crypto_pair):
     await client.close_connection()
     return f"{cost['symbol']}\n{cost['price']}\n"
 
-
+#  вызвать 20 пар  -  random
 async def fetch_20pairs():
     # initialise the client
     client = await AsyncClient.create(BINANCE_API, BINANCE_SEKRET)
